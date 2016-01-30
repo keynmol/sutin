@@ -1,0 +1,29 @@
+#! /usr/bin/env python3
+
+import argparse
+
+from sutin import *
+
+parser = argparse.ArgumentParser("sutin")
+
+parser.add_argument("template", help="select a template for your new project")
+parser.add_argument("folder", nargs="?", default=".", help="folder in which to create the project")
+parser.add_argument("-f", "--force", action="store_true", help="force create project even if the folder is not empty")
+
+args = parser.parse_args()
+
+templates = get_templates()
+target_folder = os.path.expanduser(os.path.abspath(args.folder))
+
+if args.template not in templates:
+    print("Template {} was not found. ".format(args.template))
+    print("Here's a list of available templates: {}".format(", ".join(sorted(templates.keys()))))
+    exit(1)    
+
+if os.path.exists(target_folder) and not is_empty(target_folder) and not args.force:
+    print("Target folder {} is not empty, use -f flag to make it happen anyways".format(target_folder))
+    exit(1)
+
+prepare(target_folder, templates[args.template])
+
+print("All done! Enjoy your \"{}\" project in {}".format(args.template, target_folder))
