@@ -3,7 +3,9 @@ sutin
 
 Hassle-free scaffold generation engine. Use it to very quickly create experimental environments.
 
-**Example: ** `sutin scala hello-scala` will create a minimal SBT scala project in `hello-scala/`
+**Install:**  `pip3 install git+https://github.com/keynmol/joe_docker.git`
+
+**Example:**  `sutin scala hello-scala` will create a minimal SBT scala project in `hello-scala/`
 
 Available templates: `r`, `r-package`, `scala`, `spark`.
 
